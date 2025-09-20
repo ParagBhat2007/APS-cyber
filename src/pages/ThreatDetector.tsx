@@ -6,6 +6,82 @@ import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 import { Search, Upload, Shield, AlertTriangle, CheckCircle, FileText, Globe } from "lucide-react";
 
+// 🔑 Phishing detection logic (from your C++ rules)
+function isPhishing(url: string): { status: string; riskScore: number; threats: string[]; details: any } {
+  const u = url.toLowerCase();
+  const threats: string[] = [];
+  let score = 0;
+
+  // 1. Check length
+  if (u.length > 75) {
+    threats.push("Unusually long URL");
+    score += 20;
+  }
+
+  // 2. Contains '@'
+  if (u.includes("@")) {
+    threats.push("Contains '@' symbol (possible redirect trick)");
+    score += 25;
+  }
+
+  // 3. Too many dashes
+  if ((u.match(/-/g) || []).length > 3) {
+    threats.push("Too many '-' characters in domain");
+    score += 15;
+  }
+
+  // 4. IP address instead of domain
+  const ipPattern = /http[s]?:\/\/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/;
+  if (ipPattern.test(u)) {
+    threats.push("Uses IP address instead of domain");
+    score += 30;
+  }
+
+  // 5. No HTTPS
+  if (!u.startsWith("https://")) {
+    threats.push("Connection not secured with HTTPS");
+    score += 20;
+  }
+
+  // 6. Suspicious keywords
+  const badWords = ["login", "verify", "update", "bank", "secure", "account", "free"];
+  badWords.forEach(word => {
+    if (u.includes(word)) {
+      threats.push(`Suspicious keyword detected: "${word}"`);
+      score += 10;
+    }
+  });
+
+  // 7. Too many subdomains
+  if ((u.match(/\./g) || []).length > 4) {
+    threats.push("Too many subdomains in URL");
+    score += 15;
+  }
+
+  // 8. Suspicious TLDs
+  const badTLDs = [".xyz", ".top", ".tk", ".zip", ".ru"];
+  badTLDs.forEach(tld => {
+    if (u.endsWith(tld)) {
+      threats.push(`Suspicious domain extension: ${tld}`);
+      score += 25;
+    }
+  });
+
+  // Normalize risk score (0–100)
+  const riskScore = Math.min(score, 100);
+
+  return {
+    status: threats.length > 0 ? "malicious" : "safe",
+    riskScore,
+    threats,
+    details: {
+      urlLength: `${u.length} characters`,
+      sslCertificate: u.startsWith("https://") ? "Valid" : "Invalid",
+      subdomains: (u.match(/\./g) || []).length.toString()
+    }
+  };
+}
+
 const ThreatDetector = () => {
   const [url, setUrl] = useState("");
   const [isScanning, setIsScanning] = useState(false);
@@ -14,25 +90,17 @@ const ThreatDetector = () => {
 
   const handleUrlScan = async () => {
     if (!url) return;
-    
+
     setIsScanning(true);
-    // Simulate scan delay
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Mock scan result
-    const mockResult = {
+    await new Promise(resolve => setTimeout(resolve, 1500)); // simulate scan delay
+
+    // ✅ Use phishing detection logic
+    const result = isPhishing(url);
+    setScanResult({
       url,
-      status: Math.random() > 0.3 ? "safe" : "malicious",
-      riskScore: Math.floor(Math.random() * 100),
-      threats: Math.random() > 0.5 ? ["Phishing attempt", "Suspicious redirects"] : [],
-      details: {
-        domainAge: Math.floor(Math.random() * 1000) + " days",
-        sslCertificate: Math.random() > 0.2 ? "Valid" : "Invalid",
-        reputation: Math.random() > 0.3 ? "Good" : "Poor"
-      }
-    };
-    
-    setScanResult(mockResult);
+      ...result
+    });
+
     setIsScanning(false);
   };
 
@@ -44,10 +112,10 @@ const ThreatDetector = () => {
 
   const handleFileScan = async () => {
     if (!file) return;
-    
     setIsScanning(true);
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // (Still mock logic for files)
     const mockResult = {
       filename: file.name,
       status: Math.random() > 0.2 ? "safe" : "malicious",
@@ -59,7 +127,7 @@ const ThreatDetector = () => {
         scanTime: "2.3 seconds"
       }
     };
-    
+
     setScanResult(mockResult);
     setIsScanning(false);
   };
@@ -245,63 +313,16 @@ const ThreatDetector = () => {
                   {Object.entries(scanResult.details).map(([key, value]) => (
                     <div key={key} className="flex justify-between p-3 rounded-lg bg-muted/10">
                       <span className="text-muted-foreground capitalize">
-                        {key.replace(/([A-Z])/g, ' $1').trim()}:
+                        {key.replace(/([A-Z])/g, " $1").trim()}:
                       </span>
                       <span className="text-foreground font-medium">{value as string}</span>
                     </div>
                   ))}
                 </div>
               </div>
-
-              {/* Recommendations */}
-              <div className="p-4 rounded-xl bg-gradient-to-r from-cyber-blue/10 to-cyber-cyan/10 border border-cyber-border">
-                <h4 className="font-semibold text-foreground mb-2">Security Recommendations</h4>
-                {scanResult.status === "safe" ? (
-                  <p className="text-muted-foreground">
-                    This {scanResult.url ? "website" : "file"} appears to be safe. However, always remain vigilant and avoid sharing sensitive information.
-                  </p>
-                ) : (
-                  <div className="space-y-2 text-destructive">
-                    <p>⚠️ This {scanResult.url ? "website" : "file"} has been flagged as potentially malicious.</p>
-                    <p>🚫 Do not enter personal information or download files from this source.</p>
-                    <p>🛡️ Consider using updated antivirus software and report this threat.</p>
-                  </div>
-                )}
-              </div>
             </CardContent>
           </Card>
         )}
-
-        {/* Security Tips */}
-        <div className="mt-16 grid md:grid-cols-3 gap-6">
-          <Card className="glass-card">
-            <CardContent className="p-6 text-center">
-              <Shield className="h-8 w-8 text-cyber-cyan mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Stay Updated</h3>
-              <p className="text-sm text-muted-foreground">
-                Keep your antivirus and browser updated for the latest protection
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="glass-card">
-            <CardContent className="p-6 text-center">
-              <AlertTriangle className="h-8 w-8 text-cyber-cyan mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Verify Sources</h3>
-              <p className="text-sm text-muted-foreground">
-                Always verify the authenticity of websites and file sources
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="glass-card">
-            <CardContent className="p-6 text-center">
-              <CheckCircle className="h-8 w-8 text-cyber-cyan mx-auto mb-4" />
-              <h3 className="font-semibold mb-2">Regular Scans</h3>
-              <p className="text-sm text-muted-foreground">
-                Scan suspicious links and files before accessing or opening them
-              </p>
-            </CardContent>
-          </Card>
-        </div>
       </div>
     </div>
   );
