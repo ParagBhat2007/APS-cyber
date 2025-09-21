@@ -45,7 +45,7 @@ const Contact = () => {
       icon: Mail,
       title: "Email Support",
       description: "Get in touch with our team",
-      contact: "support@lovableai.com",
+      contact: "support@ai.com",
       available: "24/7"
     },
     {

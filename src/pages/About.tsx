@@ -54,7 +54,7 @@ const About = () => {
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
-            About Lovable AI
+            About APS-Cyber
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Building secure and intelligent AI-driven platforms that protect, educate, 
@@ -68,7 +68,7 @@ const About = () => {
             <div>
               <h2 className="text-3xl font-bold mb-6 text-gradient">Our Mission</h2>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                At Lovable AI, we believe that artificial intelligence should enhance human capabilities 
+                At APS AI, we believe that artificial intelligence should enhance human capabilities 
                 while maintaining the highest standards of security and privacy. Our mission is to develop 
                 cutting-edge AI solutions that not only solve complex problems but also educate and protect 
                 users from emerging digital threats.
