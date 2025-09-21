@@ -56,7 +56,7 @@ const Footer = () => {
               <div className="p-2 rounded-xl bg-gradient-to-r from-cyber-blue to-cyber-cyan neon-glow">
                 <Cpu className="h-6 w-6 text-cyber-dark" />
               </div>
-              <span className="text-xl font-bold text-gradient">Lovable AI</span>
+              <span className="text-xl font-bold text-gradient">Parag's CyberSec</span>
             </Link>
             <p className="text-muted-foreground mb-6 max-w-md leading-relaxed">
               Building secure and intelligent AI-driven platforms that protect, educate, 

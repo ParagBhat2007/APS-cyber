@@ -22,7 +22,7 @@ const Navigation = () => {
             <div className="p-2 rounded-xl bg-gradient-to-r from-cyber-blue to-cyber-cyan neon-glow">
               <Cpu className="h-6 w-6 text-cyber-dark" />
             </div>
-            <span className="text-xl font-bold text-gradient">Lovable AI</span>
+            <span className="text-xl font-bold text-gradient">APS CyberSec</span>
           </Link>
           
           <div className="hidden md:flex items-center space-x-1">
