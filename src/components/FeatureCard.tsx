@@ -8,13 +8,13 @@ interface FeatureCardProps {
 
 const FeatureCard = ({ icon: Icon, title, description }: FeatureCardProps) => {
   return (
-    <div className="glass-card p-6 neon-glow group cursor-pointer">
+    <div className="glass-card p-6 group cursor-pointer transition-all duration-300 hover:border-primary/30">
       <div className="flex flex-col items-center text-center space-y-4">
-        <div className="p-4 rounded-2xl bg-gradient-to-r from-cyber-blue/20 to-cyber-cyan/20 border border-cyber-border group-hover:from-cyber-blue/30 group-hover:to-cyber-cyan/30 transition-all duration-300">
-          <Icon className="h-8 w-8 text-cyber-cyan" />
+        <div className="p-4 rounded-2xl bg-primary/10 border border-primary/20 group-hover:bg-primary/15 group-hover:border-primary/30 transition-all duration-300">
+          <Icon className="h-7 w-7 text-primary" />
         </div>
-        <h3 className="text-xl font-semibold text-foreground">{title}</h3>
-        <p className="text-muted-foreground leading-relaxed">{description}</p>
+        <h3 className="text-lg font-semibold text-foreground">{title}</h3>
+        <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
       </div>
     </div>
   );

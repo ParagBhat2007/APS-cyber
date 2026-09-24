@@ -2,86 +2,114 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Futuristic Cyber-AI Design System. All colors, gradients, fonts, etc defined here. 
-All colors MUST be HSL.
+/* SPSK-Threat Detector Design System
+   Professional light/dark theme with Inter font.
+   All colors in HSL format.
 */
 
 @layer base {
   :root {
-    --background: 215 28% 9%;
-    --foreground: 0 0% 100%;
+    /* Light Mode */
+    --background: 220 20% 97%;
+    --foreground: 220 25% 10%;
 
-    --card: 220 22% 12%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 10%;
 
-    --popover: 220 22% 12%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 10%;
 
-    --primary: 199 89% 48%;
-    --primary-foreground: 215 28% 9%;
+    --primary: 217 91% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 188 95% 68%;
-    --secondary-foreground: 215 28% 9%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 25% 10%;
 
-    --muted: 217 25% 16%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 46%;
 
-    --accent: 199 89% 48%;
-    --accent-foreground: 215 28% 9%;
+    --accent: 217 91% 50%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 217 25% 20%;
-    --input: 217 25% 16%;
-    --ring: 199 89% 48%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 217 91% 50%;
 
     --radius: 0.75rem;
 
-    /* Custom Cyber-AI Theme Variables */
-    --cyber-blue: 199 89% 48%;
-    --cyber-cyan: 188 95% 68%;
-    --cyber-dark: 215 28% 9%;
-    --cyber-slate: 220 22% 12%;
-    --cyber-border: 217 25% 20%;
-    
-    /* Gradients */
-    --gradient-cyber: linear-gradient(135deg, hsl(var(--cyber-blue)), hsl(var(--cyber-cyan)));
-    --gradient-dark: linear-gradient(180deg, hsl(var(--cyber-dark)), hsl(var(--cyber-slate)));
-    --gradient-glow: radial-gradient(circle at center, hsl(var(--cyber-blue) / 0.3), transparent 70%);
-    
-    /* Shadows */
-    --shadow-neon: 0 0 20px hsl(var(--cyber-blue) / 0.5);
-    --shadow-glow: 0 0 40px hsl(var(--cyber-blue) / 0.3);
-    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.4);
-    
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-glow: box-shadow 0.3s ease, transform 0.2s ease;
+    /* Brand Colors - Light */
+    --spsk-primary: 217 91% 50%;
+    --spsk-accent: 199 89% 48%;
+    --spsk-surface: 0 0% 100%;
+    --spsk-surface-hover: 220 14% 96%;
+    --spsk-border: 220 13% 91%;
+    --spsk-success: 142 71% 45%;
+    --spsk-warning: 38 92% 50%;
+    --spsk-danger: 0 84% 60%;
 
+    /* Sidebar */
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 217 91% 50%;
   }
 
   .dark {
-    /* Dark mode uses same cyber theme */
-    --background: 215 28% 9%;
-    --foreground: 0 0% 100%;
-    --card: 220 22% 12%;
-    --card-foreground: 0 0% 100%;
+    /* Dark Mode */
+    --background: 222 47% 8%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 8%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 222 47% 8%;
+
+    --destructive: 0 63% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 217 33% 20%;
+    --input: 217 33% 17%;
+    --ring: 217 91% 60%;
+
+    /* Brand Colors - Dark */
+    --spsk-primary: 217 91% 60%;
+    --spsk-accent: 188 95% 68%;
+    --spsk-surface: 222 47% 11%;
+    --spsk-surface-hover: 217 33% 17%;
+    --spsk-border: 217 33% 20%;
+    --spsk-success: 142 71% 45%;
+    --spsk-warning: 38 92% 50%;
+    --spsk-danger: 0 63% 50%;
+
+    /* Sidebar */
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 222 47% 8%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 20%;
+    --sidebar-ring: 217 91% 60%;
   }
 }
 
@@ -90,40 +118,121 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
   body {
-    @apply bg-background text-foreground font-sans;
-    background-image: 
-      radial-gradient(circle at 20% 20%, hsl(var(--cyber-blue) / 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, hsl(var(--cyber-cyan) / 0.1) 0%, transparent 50%),
-      linear-gradient(135deg, hsl(var(--cyber-dark)) 0%, hsl(var(--cyber-slate)) 100%);
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     min-height: 100vh;
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(circle at 20% 20%, hsl(var(--spsk-primary) / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, hsl(var(--spsk-accent) / 0.05) 0%, transparent 50%);
   }
 }
 
 @layer components {
   .glass-card {
-    @apply backdrop-blur-md bg-card/80 border border-cyber-border rounded-2xl;
-    box-shadow: var(--shadow-card), inset 0 1px 0 hsl(0 0% 100% / 0.1);
+    @apply backdrop-blur-md rounded-2xl border;
+    background: hsl(var(--card) / 0.8);
+    border-color: hsl(var(--border));
+    box-shadow: 0 4px 24px hsl(0 0% 0% / 0.06), inset 0 1px 0 hsl(0 0% 100% / 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
+  .dark .glass-card {
+    box-shadow: 0 8px 32px hsl(0 0% 0% / 0.3), inset 0 1px 0 hsl(0 0% 100% / 0.05);
+  }
+
+  .glass-card:hover {
+    box-shadow: 0 8px 40px hsl(var(--spsk-primary) / 0.1);
+    transform: translateY(-2px);
+  }
+
+  .dark .glass-card:hover {
+    box-shadow: 0 8px 40px hsl(var(--spsk-primary) / 0.15);
+  }
+
   .neon-glow {
-    box-shadow: var(--shadow-neon);
-    transition: var(--transition-glow);
+    box-shadow: 0 0 0 1px hsl(var(--spsk-primary) / 0.1);
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
   }
-  
+
   .neon-glow:hover {
-    box-shadow: var(--shadow-glow);
-    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 0 20px hsl(var(--spsk-primary) / 0.15), 0 0 0 1px hsl(var(--spsk-primary) / 0.2);
   }
-  
+
+  .dark .neon-glow:hover {
+    box-shadow: 0 0 30px hsl(var(--spsk-primary) / 0.2), 0 0 0 1px hsl(var(--spsk-primary) / 0.3);
+  }
+
+  .spsk-gradient {
+    background: linear-gradient(135deg, hsl(var(--spsk-primary)), hsl(var(--spsk-accent)));
+  }
+
   .cyber-gradient {
-    background: var(--gradient-cyber);
+    background: linear-gradient(135deg, hsl(var(--spsk-primary)), hsl(var(--spsk-accent)));
   }
-  
+
   .text-gradient {
-    background: var(--gradient-cyber);
+    background: linear-gradient(135deg, hsl(var(--spsk-primary)), hsl(var(--spsk-accent)));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--spsk-primary) / 0.08) 0%,
+      hsl(var(--spsk-accent) / 0.04) 50%,
+      transparent 100%
+    );
+  }
+
+  .dark .hero-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--spsk-primary) / 0.15) 0%,
+      hsl(var(--spsk-accent) / 0.08) 50%,
+      transparent 100%
+    );
+  }
+
+  /* Risk score progress bar */
+  .risk-bar {
+    @apply h-3 rounded-full overflow-hidden;
+    background: hsl(var(--muted));
+  }
+
+  .risk-bar-fill {
+    @apply h-full rounded-full transition-all duration-1000 ease-out;
+  }
+
+  .risk-low {
+    background: linear-gradient(90deg, hsl(var(--spsk-success)), hsl(142 71% 55%));
+  }
+
+  .risk-medium {
+    background: linear-gradient(90deg, hsl(var(--spsk-warning)), hsl(38 92% 60%));
+  }
+
+  .risk-high {
+    background: linear-gradient(90deg, hsl(var(--spsk-danger)), hsl(0 84% 70%));
+  }
+
+  /* Scan animation */
+  @keyframes scan-line {
+    0% { transform: translateY(-100%); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(100%); opacity: 0; }
+  }
+
+  .scan-animation {
+    animation: scan-line 1.5s ease-in-out infinite;
   }
 }

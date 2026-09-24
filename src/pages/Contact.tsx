@@ -12,7 +12,7 @@ const Contact = () => {
     name: "",
     email: "",
     subject: "",
-    message: ""
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -20,22 +20,21 @@ const Contact = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     toast({
       title: "Message Sent Successfully!",
       description: "We'll get back to you within 24 hours.",
     });
-    
+
     setFormData({ name: "", email: "", subject: "", message: "" });
     setIsSubmitting(false);
   };
@@ -45,63 +44,50 @@ const Contact = () => {
       icon: Mail,
       title: "Email Support",
       description: "Get in touch with our team",
-      contact: "support@ai.com",
-      available: "24/7"
+      contact: "support@spsk-detector.com",
+      available: "24/7",
     },
     {
       icon: MessageSquare,
       title: "Live Chat",
       description: "Real-time assistance",
       contact: "Available on our platform",
-      available: "Mon-Fri, 9AM-6PM EST"
+      available: "Mon-Fri, 9AM-6PM IST",
     },
     {
       icon: Phone,
       title: "Phone Support",
       description: "Speak with our experts",
-      contact: "+1 (555) 123-4567",
-      available: "Business hours only"
-    }
-  ];
-
-  const officeLocations = [
-    {
-      city: "San Francisco",
-      address: "123 Innovation Drive, CA 94105",
-      type: "Headquarters"
+      contact: "+91 (000) 000-0000",
+      available: "Business hours only",
     },
-    {
-      city: "New York",
-      address: "456 Tech Avenue, NY 10001",
-      type: "East Coast Office"
-    },
-    {
-      city: "London",
-      address: "789 AI Street, EC2A 2BB",
-      type: "European Hub"
-    }
   ];
 
   return (
-    <div className="min-h-screen py-20 px-6">
-      <div className="container mx-auto max-w-7xl">
+    <div className="min-h-screen py-16 px-6">
+      <div className="container mx-auto max-w-6xl">
+        {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
-            Get in Touch
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
+            <Mail className="h-4 w-4" />
+            Contact Us
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+            Get in <span className="text-gradient">Touch</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Have questions about our AI solutions or need technical support? 
-            Our team of experts is here to help you navigate the future of artificial intelligence.
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            Have questions about SPSK-Threat Detector or need support?
+            Our team is here to help you stay protected online.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
+        <div className="grid lg:grid-cols-3 gap-10">
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <Card className="glass-card neon-glow">
+            <Card className="glass-card">
               <CardHeader>
-                <CardTitle className="text-2xl text-gradient flex items-center">
-                  <Send className="h-6 w-6 text-cyber-cyan mr-3" />
+                <CardTitle className="text-xl text-foreground flex items-center gap-2">
+                  <Send className="h-5 w-5 text-primary" />
                   Send us a Message
                 </CardTitle>
                 <CardDescription>
@@ -109,7 +95,7 @@ const Contact = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="name">Full Name</Label>
@@ -117,11 +103,11 @@ const Contact = () => {
                         id="name"
                         name="name"
                         type="text"
-                        placeholder="John Doe"
+                        placeholder="Your name"
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="bg-cyber-slate/50 border-cyber-border focus:border-cyber-cyan"
+                        className="bg-background border-border focus:border-primary"
                       />
                     </div>
                     <div className="space-y-2">
@@ -130,15 +116,15 @@ const Contact = () => {
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="john@example.com"
+                        placeholder="you@example.com"
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="bg-cyber-slate/50 border-cyber-border focus:border-cyber-cyan"
+                        className="bg-background border-border focus:border-primary"
                       />
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="subject">Subject</Label>
                     <Input
@@ -149,33 +135,33 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleInputChange}
                       required
-                      className="bg-cyber-slate/50 border-cyber-border focus:border-cyber-cyan"
+                      className="bg-background border-border focus:border-primary"
                     />
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="message">Message</Label>
                     <Textarea
                       id="message"
                       name="message"
-                      placeholder="Tell us about your project, questions, or how we can help..."
-                      rows={6}
+                      placeholder="Tell us about your question, feedback, or how we can help..."
+                      rows={5}
                       value={formData.message}
                       onChange={handleInputChange}
                       required
-                      className="bg-cyber-slate/50 border-cyber-border focus:border-cyber-cyan resize-none"
+                      className="bg-background border-border focus:border-primary resize-none"
                     />
                   </div>
-                  
+
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full cyber-gradient text-cyber-dark font-semibold py-3 neon-glow"
+                    className="w-full spsk-gradient text-white font-medium py-3 shadow-md hover:shadow-lg"
                   >
                     {isSubmitting ? (
                       <>
                         <Send className="mr-2 h-4 w-4 animate-spin" />
-                        Sending Message...
+                        Sending Message…
                       </>
                     ) : (
                       <>
@@ -189,67 +175,40 @@ const Contact = () => {
             </Card>
           </div>
 
-          {/* Contact Information */}
-          <div className="space-y-8">
-            {/* Contact Methods */}
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold text-gradient">Contact Information</h2>
-              {contactInfo.map((info, index) => (
-                <Card key={index} className="glass-card">
-                  <CardContent className="p-4">
-                    <div className="flex items-start space-x-3">
-                      <div className="p-2 rounded-lg bg-gradient-to-r from-cyber-blue/20 to-cyber-cyan/20 border border-cyber-border">
-                        <info.icon className="h-5 w-5 text-cyber-cyan" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-foreground">{info.title}</h3>
-                        <p className="text-sm text-muted-foreground mb-1">{info.description}</p>
-                        <p className="text-cyber-cyan font-medium text-sm">{info.contact}</p>
-                        <div className="flex items-center mt-1">
-                          <Clock className="h-3 w-3 text-muted-foreground mr-1" />
-                          <span className="text-xs text-muted-foreground">{info.available}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+          {/* Sidebar */}
+          <div className="space-y-6">
+            <h2 className="text-lg font-semibold text-foreground">Contact Information</h2>
 
-            {/* Office Locations */}
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold text-gradient">Office Locations</h2>
-              {officeLocations.map((office, index) => (
-                <Card key={index} className="glass-card">
-                  <CardContent className="p-4">
-                    <div className="flex items-start space-x-3">
-                      <div className="p-2 rounded-lg bg-gradient-to-r from-cyber-blue/20 to-cyber-cyan/20 border border-cyber-border">
-                        <MapPin className="h-5 w-5 text-cyber-cyan" />
-                      </div>
-                      <div>
-                        <div className="flex items-center space-x-2 mb-1">
-                          <h3 className="font-semibold text-foreground">{office.city}</h3>
-                          <span className="text-xs px-2 py-1 rounded bg-cyber-blue/20 text-cyber-cyan">
-                            {office.type}
-                          </span>
-                        </div>
-                        <p className="text-sm text-muted-foreground">{office.address}</p>
+            {contactInfo.map((info, index) => (
+              <Card key={index} className="glass-card">
+                <CardContent className="p-4">
+                  <div className="flex items-start space-x-3">
+                    <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
+                      <info.icon className="h-4 w-4 text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-foreground text-sm">{info.title}</h3>
+                      <p className="text-xs text-muted-foreground mb-1">{info.description}</p>
+                      <p className="text-primary font-medium text-sm">{info.contact}</p>
+                      <div className="flex items-center mt-1">
+                        <Clock className="h-3 w-3 text-muted-foreground mr-1" />
+                        <span className="text-xs text-muted-foreground">{info.available}</span>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
 
             {/* Security Notice */}
-            <Card className="glass-card border-cyber-cyan/30">
+            <Card className="glass-card border-primary/20">
               <CardContent className="p-4">
                 <div className="flex items-start space-x-3">
-                  <Shield className="h-5 w-5 text-cyber-cyan mt-1" />
+                  <Shield className="h-4 w-4 text-primary mt-0.5" />
                   <div>
-                    <h3 className="font-semibold text-cyber-cyan mb-1">Secure Communication</h3>
-                    <p className="text-sm text-muted-foreground">
-                      All communications are encrypted and protected. We never share your 
+                    <h3 className="font-semibold text-primary text-sm mb-1">Secure Communication</h3>
+                    <p className="text-xs text-muted-foreground">
+                      All communications are handled securely. We never share your
                       personal information with third parties.
                     </p>
                   </div>
@@ -259,54 +218,40 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* FAQ Section */}
+        {/* FAQ */}
         <section className="mt-20">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-gradient">
-              Frequently Asked Questions
+            <h2 className="text-3xl font-bold mb-4 text-foreground">
+              Frequently Asked <span className="text-gradient">Questions</span>
             </h2>
-            <p className="text-muted-foreground">
-              Quick answers to common questions about our AI platform
-            </p>
           </div>
-          
-          <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-            <Card className="glass-card">
-              <CardContent className="p-6">
-                <h3 className="font-semibold mb-2 text-foreground">How accurate is your threat detection?</h3>
-                <p className="text-sm text-muted-foreground">
-                  Our AI-powered threat detection system maintains 99.9% accuracy through continuous 
-                  learning and real-time threat intelligence updates.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="glass-card">
-              <CardContent className="p-6">
-                <h3 className="font-semibold mb-2 text-foreground">Is my data secure?</h3>
-                <p className="text-sm text-muted-foreground">
-                  Yes, all data is encrypted end-to-end and processed in secure, compliant 
-                  environments. We follow strict privacy standards.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="glass-card">
-              <CardContent className="p-6">
-                <h3 className="font-semibold mb-2 text-foreground">What file types can I scan?</h3>
-                <p className="text-sm text-muted-foreground">
-                  We support most common file types including PDFs, documents, images, 
-                  executables, and compressed files up to 100MB.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="glass-card">
-              <CardContent className="p-6">
-                <h3 className="font-semibold mb-2 text-foreground">Do you offer enterprise solutions?</h3>
-                <p className="text-sm text-muted-foreground">
-                  Yes, we provide enterprise-grade solutions with custom integrations, 
-                  dedicated support, and enhanced security features.
-                </p>
-              </CardContent>
-            </Card>
+
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                q: "How accurate is the phishing detection?",
+                a: "Our engine uses 17+ heuristic rules covering homoglyph attacks, brand impersonation, URL patterns, and more. While no system is 100% perfect, our multi-layered approach catches the vast majority of phishing URLs.",
+              },
+              {
+                q: "Is my data sent to any server?",
+                a: "No. All analysis runs entirely in your browser (client-side). No URLs, files, or data are ever transmitted to our servers or any third party.",
+              },
+              {
+                q: "Can I scan email headers?",
+                a: "Yes! Our Email Header Analyzer checks for SPF/DKIM/DMARC failures and From/Return-Path mismatches to detect email spoofing attempts.",
+              },
+              {
+                q: "Is this tool free to use?",
+                a: "Yes, SPSK-Threat Detector is completely free. No sign-up, no ads, no premium tiers.",
+              },
+            ].map((faq, index) => (
+              <Card key={index} className="glass-card">
+                <CardContent className="p-6">
+                  <h3 className="font-semibold mb-2 text-foreground text-sm">{faq.q}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </section>
       </div>

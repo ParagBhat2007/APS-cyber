@@ -4,8 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Shield, Lock, AlertTriangle, Eye, Key, Globe, CheckCircle, XCircle } from "lucide-react";
 import { useState } from "react";
 
+const PHISHING_IMAGE = "https://images.unsplash.com/photo-1563986768609-322da13575f2?auto=format&fit=crop&w=800&q=80";
+
 const Cybersecurity = () => {
-  const [currentQuiz, setCurrentQuiz] = useState(0);
   const [quizAnswers, setQuizAnswers] = useState<Record<number, number>>({});
   const [showResults, setShowResults] = useState(false);
 
@@ -15,29 +16,29 @@ const Cybersecurity = () => {
       title: "Phishing Attacks",
       description: "Learn to identify fraudulent emails, messages, and websites designed to steal your credentials.",
       level: "Critical",
-      tips: ["Verify sender identity", "Check URLs carefully", "Don't click suspicious links", "Enable 2FA"]
+      tips: ["Verify sender identity", "Check URLs carefully", "Don't click suspicious links", "Enable 2FA"],
     },
     {
       icon: Lock,
       title: "Password Security",
       description: "Best practices for creating and managing strong, unique passwords across all accounts.",
       level: "High",
-      tips: ["Use password managers", "Enable MFA", "Avoid common passwords", "Regular updates"]
+      tips: ["Use password managers", "Enable MFA", "Avoid common passwords", "Regular updates"],
     },
     {
       icon: Globe,
       title: "Safe Browsing",
       description: "Navigate the internet securely while avoiding malicious websites and downloads.",
       level: "Medium",
-      tips: ["HTTPS websites only", "Avoid suspicious downloads", "Use reputable browsers", "Ad blockers"]
+      tips: ["HTTPS websites only", "Avoid suspicious downloads", "Use reputable browsers", "Ad blockers"],
     },
     {
       icon: Key,
       title: "Data Protection",
       description: "Safeguard personal and sensitive information from unauthorized access and breaches.",
       level: "High",
-      tips: ["Regular backups", "Encrypt sensitive data", "Secure Wi-Fi", "Privacy settings"]
-    }
+      tips: ["Regular backups", "Encrypt sensitive data", "Secure Wi-Fi", "Privacy settings"],
+    },
   ];
 
   const quizQuestions = [
@@ -47,9 +48,9 @@ const Cybersecurity = () => {
         "Urgent action required with threats",
         "Generic greeting like 'Dear Customer'",
         "Suspicious links or attachments",
-        "All of the above"
+        "All of the above",
       ],
-      correct: 3
+      correct: 3,
     },
     {
       question: "What makes a password strong?",
@@ -57,9 +58,9 @@ const Cybersecurity = () => {
         "At least 8 characters long",
         "Mix of letters, numbers, and symbols",
         "Unique for each account",
-        "All of the above"
+        "All of the above",
       ],
-      correct: 3
+      correct: 3,
     },
     {
       question: "What should you do with suspicious attachments?",
@@ -67,17 +68,40 @@ const Cybersecurity = () => {
         "Open them to see what they contain",
         "Scan them with antivirus first",
         "Delete them immediately",
-        "Forward them to colleagues for verification"
+        "Forward them to colleagues for verification",
       ],
-      correct: 2
-    }
+      correct: 2,
+    },
+    {
+      question: "A URL starts with 'http://' instead of 'https://'. What does this mean?",
+      options: [
+        "The site is completely safe",
+        "The connection is not encrypted",
+        "The site loads faster",
+        "Nothing important",
+      ],
+      correct: 1,
+    },
+    {
+      question: "You receive an email from 'support@paypa1.com' (note the '1'). What should you do?",
+      options: [
+        "Click the link to check your account",
+        "Reply asking if it's legitimate",
+        "Recognize it as a homoglyph attack and delete it",
+        "Forward it to friends as a warning",
+      ],
+      correct: 2,
+    },
   ];
 
-  const getLevelColor = (level: string) => {
+  const getLevelStyles = (level: string) => {
     switch (level) {
-      case "Critical": return "bg-destructive text-destructive-foreground";
-      case "High": return "bg-cyber-blue text-white";
-      default: return "bg-muted text-muted-foreground";
+      case "Critical":
+        return "bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300";
+      case "High":
+        return "bg-orange-100 text-orange-800 dark:bg-orange-900/40 dark:text-orange-300";
+      default:
+        return "bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300";
     }
   };
 
@@ -85,9 +109,7 @@ const Cybersecurity = () => {
     setQuizAnswers({ ...quizAnswers, [questionIndex]: answerIndex });
   };
 
-  const submitQuiz = () => {
-    setShowResults(true);
-  };
+  const submitQuiz = () => setShowResults(true);
 
   const getScore = () => {
     let correct = 0;
@@ -98,49 +120,61 @@ const Cybersecurity = () => {
   };
 
   return (
-    <div className="min-h-screen py-20 px-6">
-      <div className="container mx-auto">
+    <div className="min-h-screen py-16 px-6">
+      <div className="container mx-auto max-w-6xl">
+        {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
-            Cybersecurity Awareness
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
+            <Shield className="h-4 w-4" />
+            Security Education
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+            Cybersecurity <span className="text-gradient">Awareness</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Stay protected in the digital world with comprehensive security education, 
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            Stay protected in the digital world with comprehensive security education,
             threat awareness, and interactive learning tools.
           </p>
         </div>
 
-        {/* Risk Topics Section */}
+        {/* Hero Image */}
+        <div className="mb-20 rounded-2xl overflow-hidden border border-border shadow-lg">
+          <img
+            src={PHISHING_IMAGE}
+            alt="Cybersecurity concept"
+            className="w-full h-64 md:h-80 object-cover"
+          />
+        </div>
+
+        {/* Risk Topics */}
         <section className="mb-20">
-          <h2 className="text-3xl font-bold mb-8 text-center text-gradient">
-            Learn the Risks
+          <h2 className="text-3xl font-bold mb-8 text-center text-foreground">
+            Know the <span className="text-gradient">Risks</span>
           </h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6">
             {riskTopics.map((topic, index) => (
-              <Card key={index} className="glass-card neon-glow group">
+              <Card key={index} className="glass-card group animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                 <CardHeader>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="p-3 rounded-xl bg-gradient-to-r from-cyber-blue/20 to-cyber-cyan/20 border border-cyber-border group-hover:from-cyber-blue/30 group-hover:to-cyber-cyan/30 transition-all duration-300">
-                      <topic.icon className="h-6 w-6 text-cyber-cyan" />
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="p-3 rounded-xl bg-primary/10 border border-primary/20 group-hover:bg-primary/15 transition-all duration-300">
+                      <topic.icon className="h-5 w-5 text-primary" />
                     </div>
-                    <Badge className={getLevelColor(topic.level)}>
+                    <Badge className={getLevelStyles(topic.level)}>
                       {topic.level} Risk
                     </Badge>
                   </div>
-                  <CardTitle className="text-xl text-foreground">
-                    {topic.title}
-                  </CardTitle>
+                  <CardTitle className="text-lg text-foreground">{topic.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-muted-foreground mb-4">
                     {topic.description}
                   </CardDescription>
-                  <div className="space-y-2">
-                    <h4 className="font-semibold text-sm text-cyber-cyan">Security Tips:</h4>
+                  <div className="space-y-1.5">
+                    <h4 className="font-semibold text-xs text-primary uppercase tracking-wider">Security Tips</h4>
                     <ul className="space-y-1">
                       {topic.tips.map((tip, tipIndex) => (
                         <li key={tipIndex} className="flex items-center text-sm text-muted-foreground">
-                          <CheckCircle className="h-3 w-3 text-cyber-cyan mr-2 flex-shrink-0" />
+                          <CheckCircle className="h-3 w-3 text-spsk-success mr-2 flex-shrink-0" />
                           {tip}
                         </li>
                       ))}
@@ -152,107 +186,115 @@ const Cybersecurity = () => {
           </div>
         </section>
 
-        {/* Interactive Quiz Section */}
+        {/* Interactive Quiz */}
         <section>
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-gradient">
-              Interactive Security Quiz
+            <h2 className="text-3xl font-bold mb-4 text-foreground">
+              Security <span className="text-gradient">Quiz</span>
             </h2>
-            <p className="text-lg text-muted-foreground">
-              Test your cybersecurity knowledge with our gamified assessment
+            <p className="text-muted-foreground">
+              Test your cybersecurity knowledge with our interactive assessment
             </p>
           </div>
 
-          <div className="glass-card p-8 max-w-4xl mx-auto neon-glow">
-            {!showResults ? (
-              <div className="space-y-8">
-                {quizQuestions.map((question, qIndex) => (
-                  <div key={qIndex} className="space-y-4">
-                    <h3 className="text-lg font-semibold text-foreground">
-                      {qIndex + 1}. {question.question}
-                    </h3>
-                    <div className="grid gap-3">
-                      {question.options.map((option, oIndex) => (
-                        <Button
-                          key={oIndex}
-                          variant={quizAnswers[qIndex] === oIndex ? "default" : "outline"}
-                          className={`justify-start text-left h-auto p-4 ${
-                            quizAnswers[qIndex] === oIndex 
-                              ? "cyber-gradient text-cyber-dark" 
-                              : "border-cyber-border hover:bg-cyber-blue/10"
-                          }`}
-                          onClick={() => handleQuizAnswer(qIndex, oIndex)}
-                        >
-                          <span className="mr-3 font-mono text-sm">
-                            {String.fromCharCode(65 + oIndex)}.
-                          </span>
-                          {option}
-                        </Button>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-                
-                <div className="text-center pt-6">
-                  <Button
-                    onClick={submitQuiz}
-                    disabled={Object.keys(quizAnswers).length !== quizQuestions.length}
-                    className="cyber-gradient text-cyber-dark font-semibold px-8 py-3 neon-glow"
-                  >
-                    Submit Quiz
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <div className="text-center space-y-6">
-                <div className="p-6 rounded-2xl bg-gradient-to-r from-cyber-blue/20 to-cyber-cyan/20 border border-cyber-border">
-                  <h3 className="text-2xl font-bold mb-2 text-foreground">
-                    Quiz Results
-                  </h3>
-                  <p className="text-3xl font-bold text-gradient mb-4">
-                    {getScore()} / {quizQuestions.length}
-                  </p>
-                  <p className="text-muted-foreground">
-                    {getScore() === quizQuestions.length 
-                      ? "Perfect! You have excellent cybersecurity awareness."
-                      : getScore() >= 2
-                      ? "Good job! Keep learning to improve your security knowledge."
-                      : "Consider reviewing the security topics above to strengthen your defenses."
-                    }
-                  </p>
-                </div>
-                
-                <div className="space-y-4">
+          <Card className="glass-card max-w-4xl mx-auto">
+            <CardContent className="p-8">
+              {!showResults ? (
+                <div className="space-y-8">
                   {quizQuestions.map((question, qIndex) => (
-                    <div key={qIndex} className="text-left p-4 rounded-xl border border-cyber-border">
-                      <div className="flex items-center mb-2">
-                        {quizAnswers[qIndex] === question.correct ? (
-                          <CheckCircle className="h-5 w-5 text-cyber-cyan mr-2" />
-                        ) : (
-                          <XCircle className="h-5 w-5 text-destructive mr-2" />
-                        )}
-                        <span className="font-semibold">Question {qIndex + 1}</span>
+                    <div key={qIndex} className="space-y-3 animate-fade-in" style={{ animationDelay: `${qIndex * 0.1}s` }}>
+                      <h3 className="text-base font-semibold text-foreground">
+                        {qIndex + 1}. {question.question}
+                      </h3>
+                      <div className="grid gap-2">
+                        {question.options.map((option, oIndex) => (
+                          <Button
+                            key={oIndex}
+                            variant={quizAnswers[qIndex] === oIndex ? "default" : "outline"}
+                            className={`justify-start text-left h-auto p-3.5 text-sm ${
+                              quizAnswers[qIndex] === oIndex
+                                ? "spsk-gradient text-white border-transparent"
+                                : "border-border hover:border-primary/30 hover:bg-primary/5"
+                            }`}
+                            onClick={() => handleQuizAnswer(qIndex, oIndex)}
+                          >
+                            <span className="mr-3 font-mono text-xs opacity-60">
+                              {String.fromCharCode(65 + oIndex)}.
+                            </span>
+                            {option}
+                          </Button>
+                        ))}
                       </div>
-                      <p className="text-sm text-muted-foreground">
-                        Correct answer: {question.options[question.correct]}
-                      </p>
                     </div>
                   ))}
-                </div>
 
-                <Button
-                  onClick={() => {
-                    setShowResults(false);
-                    setQuizAnswers({});
-                  }}
-                  variant="outline"
-                  className="border-cyber-border text-cyber-cyan hover:bg-cyber-cyan hover:text-cyber-dark"
-                >
-                  Retake Quiz
-                </Button>
-              </div>
-            )}
-          </div>
+                  <div className="text-center pt-4">
+                    <Button
+                      onClick={submitQuiz}
+                      disabled={Object.keys(quizAnswers).length !== quizQuestions.length}
+                      className="spsk-gradient text-white font-semibold px-10 py-3 shadow-md hover:shadow-lg"
+                    >
+                      Submit Quiz
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center space-y-6 animate-fade-in">
+                  <div className="p-8 rounded-2xl bg-primary/5 border border-primary/20">
+                    <h3 className="text-2xl font-bold mb-2 text-foreground">Quiz Results</h3>
+                    <p className="text-4xl font-bold text-gradient mb-4">
+                      {getScore()} / {quizQuestions.length}
+                    </p>
+                    <p className="text-muted-foreground">
+                      {getScore() === quizQuestions.length
+                        ? "🎉 Perfect! You have excellent cybersecurity awareness."
+                        : getScore() >= 3
+                        ? "👍 Good job! Keep learning to sharpen your security instincts."
+                        : "📚 Review the security topics above to strengthen your defenses."}
+                    </p>
+                  </div>
+
+                  <div className="space-y-3 text-left">
+                    {quizQuestions.map((question, qIndex) => (
+                      <div
+                        key={qIndex}
+                        className={`p-4 rounded-xl border ${
+                          quizAnswers[qIndex] === question.correct
+                            ? "border-spsk-success/30 bg-spsk-success/5"
+                            : "border-spsk-danger/30 bg-spsk-danger/5"
+                        }`}
+                      >
+                        <div className="flex items-center mb-1.5">
+                          {quizAnswers[qIndex] === question.correct ? (
+                            <CheckCircle className="h-4 w-4 text-spsk-success mr-2" />
+                          ) : (
+                            <XCircle className="h-4 w-4 text-spsk-danger mr-2" />
+                          )}
+                          <span className="font-medium text-sm text-foreground">
+                            Q{qIndex + 1}: {question.question}
+                          </span>
+                        </div>
+                        <p className="text-xs text-muted-foreground ml-6">
+                          Correct: {question.options[question.correct]}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <Button
+                    onClick={() => {
+                      setShowResults(false);
+                      setQuizAnswers({});
+                    }}
+                    variant="outline"
+                    className="border-border hover:border-primary hover:bg-primary/5"
+                  >
+                    Retake Quiz
+                  </Button>
+                </div>
+              )}
+            </CardContent>
+          </Card>
         </section>
       </div>
     </div>

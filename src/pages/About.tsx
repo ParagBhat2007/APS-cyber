@@ -1,110 +1,125 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Brain, Shield, Users, Zap, Target, Award } from "lucide-react";
-import aiBrainImage from "@/assets/ai-brain.jpg";
+import { Shield, Brain, Users, Zap, Target, Lock } from "lucide-react";
+
+const TEAM_IMAGE = "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=800&q=80";
 
 const About = () => {
   const values = [
     {
-      icon: Brain,
-      title: "Innovation",
-      description: "Pushing the boundaries of AI technology to solve real-world problems and create meaningful impact."
+      icon: Shield,
+      title: "Security First",
+      description: "Every feature is built with security and privacy at its core. Your data never leaves your browser.",
     },
     {
-      icon: Shield,
-      title: "Security",
-      description: "Prioritizing cybersecurity and privacy in all our AI solutions to protect users and their data."
+      icon: Brain,
+      title: "Intelligent Analysis",
+      description: "Advanced heuristic engines that detect sophisticated phishing techniques including homoglyph attacks.",
     },
     {
       icon: Users,
       title: "Accessibility",
-      description: "Making advanced AI technology accessible to everyone, regardless of technical background."
+      description: "Making cybersecurity tools accessible to everyone — no technical background required.",
     },
     {
       icon: Zap,
-      title: "Performance",
-      description: "Delivering fast, reliable, and efficient AI-powered solutions that scale with your needs."
-    }
+      title: "Instant Results",
+      description: "Client-side analysis means zero API latency. Get results in milliseconds, not seconds.",
+    },
   ];
 
-  const achievements = [
-    { metric: "10M+", label: "Security Scans Performed" },
-    { metric: "99.9%", label: "Threat Detection Accuracy" },
-    { metric: "50K+", label: "Users Protected Daily" },
-    { metric: "24/7", label: "AI-Powered Monitoring" }
+  const capabilities = [
+    { metric: "17+", label: "Detection Rules" },
+    { metric: "100%", label: "Client-Side Privacy" },
+    { metric: "0ms", label: "API Latency" },
+    { metric: "24/7", label: "Always Available" },
   ];
 
   const team = [
     {
-      role: "AI Research",
-      description: "Leading experts in machine learning, neural networks, and cognitive computing."
+      role: "Threat Research",
+      description: "Continuously updating detection rules based on the latest phishing techniques and attack vectors.",
     },
     {
-      role: "Cybersecurity",
-      description: "Veteran security professionals with decades of threat analysis experience."
+      role: "Security Engineering",
+      description: "Building reliable, performant detection engines that run entirely in the browser.",
     },
     {
-      role: "Product Design",
-      description: "User experience specialists focused on making AI accessible and intuitive."
-    }
+      role: "User Experience",
+      description: "Making complex security analysis results clear and actionable for everyone.",
+    },
   ];
 
   return (
-    <div className="min-h-screen py-20 px-6">
-      <div className="container mx-auto">
+    <div className="min-h-screen py-16 px-6">
+      <div className="container mx-auto max-w-6xl">
+        {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
-            About APS-Cyber
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
+            <Shield className="h-4 w-4" />
+            About Us
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
+            About <span className="text-gradient">SPSK-Threat Detector</span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Building secure and intelligent AI-driven platforms that protect, educate, 
-            and empower users in an increasingly connected world.
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            A dedicated platform for phishing detection, cybersecurity education,
+            and online threat awareness — built to protect everyday users.
           </p>
         </div>
 
-        {/* Mission Section */}
+        {/* Mission */}
         <section className="mb-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold mb-6 text-gradient">Our Mission</h2>
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                At APS AI, we believe that artificial intelligence should enhance human capabilities 
-                while maintaining the highest standards of security and privacy. Our mission is to develop 
-                cutting-edge AI solutions that not only solve complex problems but also educate and protect 
-                users from emerging digital threats.
+              <h2 className="text-3xl font-bold mb-6 text-foreground">
+                Our <span className="text-gradient">Mission</span>
+              </h2>
+              <p className="text-muted-foreground mb-6 leading-relaxed">
+                SPSK-Threat Detector was built with a simple belief: everyone deserves
+                to browse the internet safely. Phishing attacks remain one of the most
+                common cyber threats, and we're on a mission to make detection accessible
+                to everyone — not just security professionals.
               </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                We're committed to making AI technology accessible, transparent, and beneficial for everyone, 
-                fostering a future where humans and AI collaborate seamlessly to create a safer digital world.
+              <p className="text-muted-foreground leading-relaxed">
+                Our platform runs entirely in your browser. No data is sent to any server.
+                No accounts required. No tracking. Just fast, reliable phishing detection
+                that respects your privacy.
               </p>
             </div>
             <div className="relative">
-              <img 
-                src={aiBrainImage} 
-                alt="AI Brain Visualization" 
-                className="rounded-2xl shadow-2xl neon-glow animate-float"
+              <img
+                src={TEAM_IMAGE}
+                alt="Team collaboration"
+                className="rounded-2xl shadow-lg border border-border"
               />
-              <div className="absolute -top-4 -right-4 p-4 glass-card rounded-xl">
-                <Award className="h-8 w-8 text-cyber-cyan" />
+              <div className="absolute -top-3 -right-3 p-3 glass-card rounded-xl shadow-lg">
+                <Lock className="h-6 w-6 text-primary" />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Values Section */}
+        {/* Values */}
         <section className="mb-20">
-          <h2 className="text-3xl font-bold mb-12 text-center text-gradient">Our Values</h2>
+          <h2 className="text-3xl font-bold mb-10 text-center text-foreground">
+            Our <span className="text-gradient">Values</span>
+          </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
-              <Card key={index} className="glass-card neon-glow group text-center">
+              <Card
+                key={index}
+                className="glass-card group text-center animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
                 <CardHeader>
-                  <div className="mx-auto p-4 rounded-2xl bg-gradient-to-r from-cyber-blue/20 to-cyber-cyan/20 border border-cyber-border group-hover:from-cyber-blue/30 group-hover:to-cyber-cyan/30 transition-all duration-300 w-fit">
-                    <value.icon className="h-8 w-8 text-cyber-cyan" />
+                  <div className="mx-auto p-4 rounded-2xl bg-primary/10 border border-primary/20 group-hover:bg-primary/15 transition-all duration-300 w-fit">
+                    <value.icon className="h-7 w-7 text-primary" />
                   </div>
-                  <CardTitle className="text-foreground">{value.title}</CardTitle>
+                  <CardTitle className="text-foreground text-base">{value.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-muted-foreground">
+                  <CardDescription className="text-muted-foreground text-sm">
                     {value.description}
                   </CardDescription>
                 </CardContent>
@@ -113,40 +128,42 @@ const About = () => {
           </div>
         </section>
 
-        {/* Achievements Section */}
+        {/* Capabilities */}
         <section className="mb-20">
-          <div className="glass-card p-12 neon-glow">
-            <h2 className="text-3xl font-bold mb-8 text-center text-gradient">
-              Impact & Achievements
-            </h2>
-            <div className="grid md:grid-cols-4 gap-8">
-              {achievements.map((achievement, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-4xl font-bold text-gradient mb-2">
-                    {achievement.metric}
+          <Card className="glass-card border-primary/20">
+            <CardContent className="p-10">
+              <h2 className="text-3xl font-bold mb-8 text-center text-foreground">
+                Platform <span className="text-gradient">Capabilities</span>
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                {capabilities.map((item, index) => (
+                  <div key={index} className="text-center">
+                    <div className="text-3xl font-bold text-gradient mb-1">{item.metric}</div>
+                    <p className="text-sm text-muted-foreground">{item.label}</p>
                   </div>
-                  <p className="text-muted-foreground">{achievement.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </section>
 
-        {/* Team Section */}
+        {/* Team */}
         <section className="mb-20">
-          <h2 className="text-3xl font-bold mb-12 text-center text-gradient">Our Expertise</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {team.map((department, index) => (
-              <Card key={index} className="glass-card neon-glow">
+          <h2 className="text-3xl font-bold mb-10 text-center text-foreground">
+            Our <span className="text-gradient">Expertise</span>
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {team.map((dept, index) => (
+              <Card key={index} className="glass-card animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                 <CardHeader>
-                  <CardTitle className="text-xl text-foreground flex items-center">
-                    <Target className="h-5 w-5 text-cyber-cyan mr-2" />
-                    {department.role}
+                  <CardTitle className="text-lg text-foreground flex items-center">
+                    <Target className="h-4 w-4 text-primary mr-2" />
+                    {dept.role}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-muted-foreground">
-                    {department.description}
+                  <CardDescription className="text-muted-foreground text-sm">
+                    {dept.description}
                   </CardDescription>
                 </CardContent>
               </Card>
@@ -154,28 +171,32 @@ const About = () => {
           </div>
         </section>
 
-        {/* Technology Section */}
+        {/* Technology */}
         <section>
           <div className="text-center">
-            <h2 className="text-3xl font-bold mb-8 text-gradient">
-              Powered by Advanced Technology
+            <h2 className="text-3xl font-bold mb-6 text-foreground">
+              Built With <span className="text-gradient">Modern Tech</span>
             </h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto">
-              Our platform leverages state-of-the-art artificial intelligence, machine learning algorithms, 
-              and cybersecurity protocols to deliver unparalleled protection and insights.
+            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Our detection engine leverages advanced heuristic analysis, pattern matching,
+              and Unicode security research to identify phishing threats.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               {[
-                "Machine Learning", 
-                "Neural Networks", 
-                "Threat Intelligence", 
-                "Behavioral Analysis", 
-                "Real-time Processing",
-                "Cloud Security",
-                "Encrypted Communications",
-                "Automated Response"
+                "Heuristic Analysis",
+                "Homoglyph Detection",
+                "Brand Impersonation",
+                "URL Pattern Matching",
+                "Entropy Analysis",
+                "SPF/DKIM/DMARC",
+                "Client-Side Processing",
+                "Zero Data Collection",
               ].map((tech) => (
-                <Badge key={tech} variant="outline" className="border-cyber-border text-cyber-cyan px-4 py-2">
+                <Badge
+                  key={tech}
+                  variant="outline"
+                  className="border-border text-muted-foreground hover:text-primary hover:border-primary/30 px-4 py-2 transition-all duration-200"
+                >
                   {tech}
                 </Badge>
               ))}
